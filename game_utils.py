@@ -1,15 +1,15 @@
 import turtle
 from random import randrange
+from math import sqrt
 
 
-def score_text(screen, score=0):
-    score_turtle = turtle.Turtle()
+
+def score_text(score_turtle ,screen, score=0):
     score_turtle.hideturtle()
     score_turtle.speed(0)
     score_turtle.penup()
     score_turtle.setpos(0, (screen.window_height() // 2) * 0.8)
     score_turtle.write(f"Score: {score}", False, align="center", font=('Arial', 30, 'normal'))
-
 
 def setup_turtle(gamerTurtle):
     gamerTurtle.speed(0)
@@ -37,7 +37,16 @@ def send_turtle_to_random_position(screen, gamerTurtle):
     gamerTurtle.showturtle()
 
 
-def compute_click(screen, gamerTurtle):
-    click_x, click_y = 0, 0
-    screen.onclick((click_y, click_y))
-    print(click_x, click_y)
+def compute_click(turtlePos, coord_x, coord_y):
+    turtle_x, turtle_y = turtlePos
+
+    click_distance = sqrt(((turtle_x) - coord_x)**2 + ((turtle_y) - coord_y)**2)
+    #print(click_distance)
+    return click_distance
+
+def add_score(max_distance, click_distance, player_score, prize_point=1):
+    if click_distance < max_distance:
+        player_score += prize_point
+    return int(player_score)
+
+
