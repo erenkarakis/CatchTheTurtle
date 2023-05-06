@@ -18,15 +18,10 @@ def turtle_timer():
     turtle_screen.ontimer(turtle_timer, t=500)
 
 
-def add_score(click_distance, max_distance):
-    if click_distance < max_distance:
-        global player_score
-        player_score += 1
-
-
 def get_click_location(x, y):
     click_distance = game_utils.compute_click(gamerTurtle.pos(), x, y)
-    add_score(click_distance, 200)
+    global player_score
+    player_score = game_utils.add_score(200, click_distance, player_score)
     scoreTurtle.clear()
     game_utils.score_text(scoreTurtle, turtle_screen, score=player_score)
 

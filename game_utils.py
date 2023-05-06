@@ -40,9 +40,9 @@ def send_turtle_to_random_position(screen, gamerTurtle):
 def compute_click(turtlePos, coord_x, coord_y):
     turtle_x, turtle_y = turtlePos
 
-    click_distance = sqrt(((turtle_x) - coord_x)**2 + ((turtle_y) - coord_y)**2)
-    #print(click_distance)
+    click_distance = sqrt((turtle_x - coord_x) ** 2 + (turtle_y - coord_y) ** 2)
     return click_distance
+
 
 def add_score(max_distance, click_distance, player_score, prize_point=1):
     if click_distance < max_distance:
